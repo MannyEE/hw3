@@ -4,6 +4,8 @@
 #include "llrec.h"
 using namespace std;
 
+
+bool greater(int val);
 /**
  * Reads integers (separated by whitespace) from a file
  * into a linked list.
@@ -68,7 +70,7 @@ void dealloc(Node* head)
 // -----------------------------------------------
 
 
-
+struct even{bool operator()(int cur) {return cur % 2 == 0;}};
 
 
 int main(int argc, char* argv[])
@@ -86,9 +88,25 @@ int main(int argc, char* argv[])
     print(head);
 
     // Test out your linked list code
+    Node* smaller = nullptr;
+    Node* larger = nullptr;
 
+    llpivot(head, smaller, larger, 11);
 
+    cout << "\nSmaller list: ";
+    print(smaller);
+    cout << "\nLarger list: ";
+    print(larger);
+    cout << "\nNew Head: ";
+    print(head);
 
+    even testers;
+    head = readList(argv[1]);
+    // cout << "\nOriginal list: ";
+    // print(head);
+    llfilter(head, testers);
+    // cout << "\nFiltered list: ";
+    // print(head);
     
     return 0;
 
